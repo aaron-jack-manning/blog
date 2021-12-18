@@ -1,3 +1,3 @@
 # Stars and Bars Website
 
-Source code for blog [stars-and-bars.net](https://stars-and-bars.net).
+Source code for my blog [stars-and-bars.net](https://stars-and-bars.net).
