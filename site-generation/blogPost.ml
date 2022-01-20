@@ -198,7 +198,7 @@ let home_page (latest_post : blog_post) (first_featured_post : blog_post) (secon
     html [lang "en"] [
         standard_head "Stars and Bars" "stylesheet.css";
         body [] [
-            standard_title_and_nav "#" "all-posts" "rss";
+            standard_title_and_nav "#" "all-posts" "rss/index.xml";
             main [class_ "container"] [
                 div [class_ "row"] [
                     blog_post_to_card first_featured_post "New Here? Try This";
@@ -221,7 +221,7 @@ let post_page (post : blog_post) =
     html [lang "en"] [
         standard_head post.title "../../stylesheet.css";
         body [] [
-            standard_title_and_nav "../../" "../../all-posts" "../../rss";
+            standard_title_and_nav "../../" "../../all-posts" "../../rss/index.xml";
             main [class_ "container"] [
                 div [class_ "row g-5"] [
                     div [class_ "col-md-12"] [
@@ -254,7 +254,7 @@ let all_posts_page (posts : blog_post list) =
     html [lang "en"] [
         standard_head "All Posts" "../stylesheet.css";
         body [] [
-            standard_title_and_nav "../" "#" "../rss";
+            standard_title_and_nav "../" "#" "../rss/index.xml";
             main [class_ "container"] [
                 div [class_ "row g-5"] [
                     div [class_ "col-md-12"] (
