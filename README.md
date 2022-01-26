@@ -13,3 +13,5 @@ In general, styling is done through bootstrap classes specified in the HTML at t
 For example, the article tag is used for representing a blog post, and the subelements of the article are styled with the CSS. That way, when the HTML is generated, it simply converts a title, paragraph, subtitle, etc into a corresponding HTML tag.
 
 A lot of the images generated for the blog are drawn using a tool I created called [Mathil](https://github.com/aaron-jack-manning/mathil). The source code for the images can be found in the `image-source-code` folder.
+
+If you are interested in using the computer modern LaTeX font on a website just as I did, [this](https://checkmyworking.com/cm-web-fonts/) is a great resource.
