@@ -1,5 +1,4 @@
-open FromStdlib
-open Exposed
+open General
 
 let combine (tr1 : 'a tree) (tr2 : 'a tree) (topBranch : 'a) : 'a tree =
     Branch (topBranch, tr1 :: tr2 :: [])

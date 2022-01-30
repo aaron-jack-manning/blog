@@ -1,4 +1,4 @@
-open FromStdlib
+open General
 
 module type Map = sig
     type key
@@ -63,6 +63,6 @@ module RBTreeMap (M : MapSpecification) : Map with type key = M.key = struct
     let insert ((k, v) : (key * 'v)) map =
         match insert_helper (k, v) map with
         | Branch (_, (key, value), left, right) ->  Branch (Black, (key, value), left, right)
-        | Leaf -> failwith "if this exception is raised there is an error in the implementation of the function that called it"
+        | Leaf -> Fatal.failwith "if this exception is raised there is an error in the implementation of the function that called it"
 
 end

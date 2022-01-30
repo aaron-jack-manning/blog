@@ -1,4 +1,4 @@
-open FromStdlib
+open General
 
 module type RBTreeSet = sig
     type member
@@ -73,7 +73,7 @@ module RBTreeSet (M : SetSpecification) : RBTreeSet with type member = M.member 
     let insert (v : member) (set : set) : set =
         match insert_helper v set with
         | Branch (_, value, left, right) ->  Branch (Black, value, left, right)
-        | Leaf -> failwith "if this exception is raised there is an error in the implementation of the function that called it"
+        | Leaf -> Fatal.failwith "if this exception is raised there is an error in the implementation of the function that called it"
 
     let rec union set1 set2 =
         match set1 with

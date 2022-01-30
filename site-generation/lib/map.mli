@@ -1,3 +1,5 @@
+open General
+
 module type Map = sig
     (** The type of keys in the map. *)
     type key

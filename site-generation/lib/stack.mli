@@ -1,4 +1,4 @@
-open Exposed
+open General
 
 (** Removes the top element from the stack, returning a tuple of the new stack, and None if the stack was empty, or Some [x] if [x] was on top of the stack. Popping an empty stack will result in the returned stack also being empty. Runs in O(1). *)
 val pop : 'a stack -> 'a option * 'a stack

@@ -1,4 +1,4 @@
-open FromStdlib open Exposed
+open General
 
 open Attributes open Css open CssConversions open Nodes open View open BlogPost
 
@@ -270,4 +270,4 @@ let posts = [
 
 let latest = match List.head posts with
     | Some data -> data
-    | None -> failwith "there must be at least one post"
+    | None -> Fatal.failwith "there must be at least one post"

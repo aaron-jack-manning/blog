@@ -1,3 +1,3 @@
-open FromStdlib open Exposed
+open General
 
-let of_string = stdlib_bool_of_string_opt
+let of_string = FromStdlib.bool_of_string_opt

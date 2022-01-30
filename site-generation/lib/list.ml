@@ -1,5 +1,4 @@
-open FromStdlib
-open Exposed
+open General
 
 let empty : 'a list = []
 
@@ -71,8 +70,8 @@ let rec zip2_rev_tr_helper (ls1 : 'a list) (ls2 : 'b list) (acc : ('a * 'b) list
     else if (first_head = None & second_head <> None) or (first_head <> None & second_head = None) then
         Error "The two lists must be of the same length."
     else
-        let a = match first_head with | Some x -> x | None -> failwith "if this exception is raised there is an error in the implementation of the function that called it" in
-        let b = match second_head with | Some x -> x | None -> failwith "if this exception is raised there is an error in the implementation of the function that called it" in
+        let a = match first_head with | Some x -> x | None -> Fatal.failwith "if this exception is raised there is an error in the implementation of the function that called it" in
+        let b = match second_head with | Some x -> x | None -> Fatal.failwith "if this exception is raised there is an error in the implementation of the function that called it" in
 
         zip2_rev_tr_helper (tail ls1) (tail ls2) ((a, b) :: acc)
 

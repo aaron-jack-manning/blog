@@ -1,4 +1,4 @@
-open Exposed
+open General
 
 (** The empty list *)
 val empty : 'a list

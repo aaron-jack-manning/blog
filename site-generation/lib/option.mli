@@ -1,3 +1,5 @@
+open General
+
 (* Monadic return for option type. Trivially boxes the variable of type 'a into a 'a option by applying the Some constructor. *)
 val return : 'a -> 'a option
 

@@ -1,3 +1,5 @@
+open General
+
 (** Concatenates two strings together in the provided order. *)
 val ( + ) : string -> string -> string
 

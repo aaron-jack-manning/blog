@@ -1,4 +1,4 @@
-open FromStdlib open Exposed
+open General
 
 open Css open Nodes
 

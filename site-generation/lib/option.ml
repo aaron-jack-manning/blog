@@ -1,4 +1,4 @@
-open Exposed
+open General
 
 let return (x : 'a) : 'a option = Some x
 
@@ -21,5 +21,3 @@ let compose (f : 'a -> 'b option) (g : 'b -> 'c option) : 'a -> 'c option =
     (fun x -> f x >>= g)
     
 let ( >=> ) = compose
-
-

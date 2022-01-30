@@ -1,11 +1,11 @@
-open FromStdlib open Exposed
+open General
 
-let ( + ) = stdlib_string_concat
+let ( + ) = FromStdlib.string_concat
 
-let length = stdlib_string_length
+let length = FromStdlib.string_length
 
-let of_int = stdlib_string_of_int
+let of_int = FromStdlib.string_of_int
 
-let of_float = stdlib_string_of_float
+let of_float = FromStdlib.string_of_float
 
-let of_bool = stdlib_string_of_bool
+let of_bool = FromStdlib.string_of_bool

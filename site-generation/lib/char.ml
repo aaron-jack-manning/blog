@@ -1,3 +1,3 @@
-open FromStdlib open Exposed
+open General
 
-let of_int = stdlib_char_of_int
+let of_int = FromStdlib.char_of_int
