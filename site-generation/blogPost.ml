@@ -1,6 +1,10 @@
 open General
 
-open Nodes open Css open CssConversions open View open Attributes
+open Nodes
+open Css
+open CssConversions
+open View
+open Attributes
 
 
 type month = January | February | March | April | May | June | July | August | September | October | November | December
@@ -130,7 +134,7 @@ let blog_post_to_card (post : blog_post) (post_type : string) =
         ]
     ]
 
-let standard_head (page_title : string) (path_to_stylesheet : string) =
+let standard_head (page_title : string) (path_to_root : string) =
     head [] [
             meta [Attributes.charset "utf-8"];
             meta [name "viewport"; Attributes.content "width=device-width, initial-scale=1"];
@@ -141,8 +145,9 @@ let standard_head (page_title : string) (path_to_stylesheet : string) =
                 text page_title
             ];
             link [rel "stylesheet"; href "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"];
-            link [rel "stylesheet"; href path_to_stylesheet];
-            script [type_ "text/javascript"; src "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"] []
+            link [rel "stylesheet"; href String.(path_to_root + "stylesheet.css")];
+            link [rel "icon"; type_ "image/png"; href String.(path_to_root + "images/favicon.png")];
+            script [type_ "text/javascript"; src "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"] [];
         ]
 
 let standard_title_and_nav (path_to_featured : string) (path_to_all_posts : string) (path_to_rss : string) =
@@ -196,7 +201,7 @@ let standard_footer =
 
 let home_page (latest_post : blog_post) (first_featured_post : blog_post) (second_featured_post : blog_post) =
     html [lang "en"] [
-        standard_head "Stars and Bars" "stylesheet.css";
+        standard_head "Stars and Bars" "";
         body [] [
             standard_title_and_nav "#" "all-posts" "rss/index.xml";
             main [class_ "container"] [
@@ -219,7 +224,7 @@ let home_page (latest_post : blog_post) (first_featured_post : blog_post) (secon
 
 let post_page (post : blog_post) =
     html [lang "en"] [
-        standard_head post.title "../../stylesheet.css";
+        standard_head post.title "../../";
         body [] [
             standard_title_and_nav "../../" "../../all-posts" "../../rss/index.xml";
             main [class_ "container"] [
@@ -252,7 +257,7 @@ let blog_post_preview (post : blog_post) : html_node =
 
 let all_posts_page (posts : blog_post list) =
     html [lang "en"] [
-        standard_head "All Posts" "../stylesheet.css";
+        standard_head "All Posts" "../";
         body [] [
             standard_title_and_nav "../" "#" "../rss/index.xml";
             main [class_ "container"] [

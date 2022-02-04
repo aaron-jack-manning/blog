@@ -1,5 +1,6 @@
 open General
 
+
 let pop (st : 'a stack) : 'a option * 'a stack =
     match st with
     | Empty -> (None, Empty)

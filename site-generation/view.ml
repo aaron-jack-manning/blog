@@ -1,6 +1,8 @@
 open General
 
-open Attributes open Css open Nodes
+open Attributes
+open Css
+open Nodes
 
 let attribute_to_string (attribute : html_attribute) : string =
     String.(attribute.key + "=\"" + attribute.value + "\"")

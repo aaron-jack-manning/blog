@@ -1,6 +1,7 @@
 (** Purely functional queue, implemented as a pair of lists. *)
 type 'a queue = { front : 'a list; back : 'a list }
 
+(** Result type for error handling. *)
 type 'a result =
     | Error of string
     | Success of 'a
@@ -10,7 +11,7 @@ type 'a stack =
     | Empty
     | Stacked of 'a * 'a stack
 
-(* A purely functional tree with arbitrarily many branches at each node. *)
+(**A purely functional tree with arbitrarily many branches at each node. *)
 type 'a tree =
     | Leaf
     | Branch of 'a * 'a tree list
@@ -31,28 +32,40 @@ val ( << ) : ('a -> 'b) -> ('c -> 'a) -> 'c -> 'b
 val ( |> ) : 'a -> ('a -> 'b) -> 'b
 
 (** Checks for structural equality. *)
-val ( = ) : 'a -> 'a -> bool
+external ( = ) : 'a -> 'a -> bool = "%equal"
 
 (** Checks for structural inequality. *)
-val ( <> ) : 'a -> 'a -> bool
+external ( <> ) : 'a -> 'a -> bool = "%notequal"
 
 (** Polymorphic less than. *)
-val ( < ) : 'a -> 'a -> bool
+external ( < ) : 'a -> 'a -> bool = "%lessthan"
 
 (** Polymorphic greater than. *)
-val ( > ) : 'a -> 'a -> bool
+external ( > ) : 'a -> 'a -> bool = "%greaterthan"
 
 (** Polymorphic less than or equal to. *)
-val ( <= ) : 'a -> 'a -> bool
+external ( <= ) : 'a -> 'a -> bool = "%lessequal"
 
 (** Polymorphic greater than or equal to. *)
-val ( >= ) : 'a -> 'a -> bool
+external ( >= ) : 'a -> 'a -> bool = "%greaterequal"
 
 (** Logical negation. *)
 val not : bool -> bool
 
 (** Logical or (infix). *)
-val ( or ) : bool -> bool -> bool
+external ( or ) : bool -> bool -> bool = "%sequor"
 
 (** Logical and. *)
-val ( & ) : bool -> bool -> bool
+external ( & ) : bool -> bool -> bool = "%sequand"
+
+(** Reference cells for mutable variables. *)
+type 'a ref = { mutable contents : 'a; }
+
+(** Creates a reference cell. *)
+val ref : 'a -> 'a ref
+
+(** Updates a reference cell. *)
+val ( := ) : 'a ref -> 'a -> unit
+
+(** Returns the contents of a reference cell. *)
+val ( ! ) : 'a ref -> 'a

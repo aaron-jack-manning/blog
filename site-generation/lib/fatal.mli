@@ -1,5 +1,6 @@
 open General
 
+
 (** Throws an exception with a message. *)
 val failwith : string -> 'a
 

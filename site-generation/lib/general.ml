@@ -12,7 +12,7 @@ type 'a tree =
     | Leaf
     | Branch of 'a * 'a tree list
 
-let ignore = FromStdlib.ignore
+let ignore (a : 'a) = ()
 
 let id (x : 'a) = x
 
@@ -20,23 +20,38 @@ let ( >> ) f g x = g (f x)
 
 let ( << ) g f x = g (f x)
 
-let ( |> ) = FromStdlib.pipeline
+let ( |> ) f g = g f
 
-let ( = ) = FromStdlib.equal
+external ( = ) : 'a -> 'a -> bool = "%equal"
 
-let ( <> ) = FromStdlib.not_equal
+external ( <> ) : 'a -> 'a -> bool = "%notequal"
 
-let ( < ) = FromStdlib.less_than
+external ( < ) : 'a -> 'a -> bool = "%lessthan"
 
-let ( > ) = FromStdlib.greater_than
+external ( > ) : 'a -> 'a -> bool = "%greaterthan"
 
-let ( <= ) = FromStdlib.less_than_or_equal
+external ( <= ) : 'a -> 'a -> bool = "%lessequal"
 
-let ( >= ) = FromStdlib.greater_than_or_equal
+external ( >= ) : 'a -> 'a -> bool = "%greaterequal"
 
-let not = FromStdlib.not
+let not = function
+    | true -> false
+    | false -> true
 
-let ( or ) = FromStdlib.or_
+external ( or ) : bool -> bool -> bool = "%sequor"
 
-let ( & ) = FromStdlib.and_
+external ( & ) : bool -> bool -> bool = "%sequand"
+
+type 'a ref =
+    { mutable contents : 'a }
+
+let ref a =
+    { contents = a }
+
+let ( := ) (cell : 'a ref) (contents : 'a) =
+    cell.contents <- contents
+
+let ( ! ) (cell : 'a ref) =
+    cell.contents
+
 

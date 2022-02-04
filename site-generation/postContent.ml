@@ -1,8 +1,13 @@
 open General
 
-open Attributes open Css open CssConversions open Nodes open View open BlogPost
+open Attributes
+open Css
+open CssConversions
+open Nodes
+open View 
+open BlogPost
 
-
+(* New posts go here, and are also added to the list at the bottom of this file. *)
 
 let leveraging_self_similarity_in_problem_solving =
     let open String in
@@ -252,10 +257,6 @@ let a_better_approach_to_polynomial_division =
             Paragraph "My ultimate goal in writing this post is to encourage readers to further consider how mathematical methods for computations influence one's understanding of the concept itself, and more importantly to realise that some methods are easy precisely because they're familiar, and that makes it hard to identify where they could be problematic for people learning them for the first time.";
         ];
     }
-
-
-
-
 
 
 

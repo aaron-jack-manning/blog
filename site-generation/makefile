@@ -15,10 +15,10 @@ build:
 	ocamlopt $(CUSTOM_LIBRARY_LOCATION)/library.cmxa attributes.cmx css.cmx nodes.cmx cssConversions.cmx view.cmx blogPost.cmx postContent.cmx rss.cmx main.cmx -o program
 
 mostlyclean:
-	rm -f *.o *.a *.s *.cmi *.cmx *.cmxa *.cmo *.cma main.mli
+	rm -f *.o *.a *.s *.cmi *.cmx *.cmxa *.cmo *.cma
 
 clean:
-	rm -f *.o *.a *.s *.cmi *.cmx *.cmxa *.cmo *.cma main.mli program
+	rm -f *.o *.a *.s *.cmi *.cmx *.cmxa *.cmo *.cma program
 
 make install:
 	make build

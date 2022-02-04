@@ -1,7 +1,11 @@
 open General
 
+
 (** The empty list *)
 val empty : 'a list
+
+(** Calculates the length of the given list. Runs in O(n) and should be stored rather then recalculated if many calls are made on an unchanging list. *)
+val length : 'a list -> int
 
 (** Returns Some [x] if [x] is the head of the list, or None for the empty list. Runs in O(1). *)
 val head : 'a list -> 'a option
@@ -56,3 +60,6 @@ val find : ('a -> bool) -> 'a list -> ('a * int) option
 
 (** Initializes a list using a length and a function from the index to the desired list value. Runs in O(n). *)
 val initialize : (int -> 'a) -> int -> 'a list
+
+(* Creates a list from the provided array. *)
+val of_array : 'a array -> 'a list

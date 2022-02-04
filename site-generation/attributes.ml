@@ -1,9 +1,6 @@
 open General
 
 
-(* This should be renamed to html_attribute. *)
-
-
 type html_attribute =
     {
         key : string;
@@ -17,9 +14,6 @@ let custom_attribute (key : string) (value : string) : html_attribute =
     }
 
 
-
-
-(* Attribute functions. All currently just take in a string, this will be fixed later to be specialised. *)
 
 let accept (value : string)  : html_attribute = 
     {

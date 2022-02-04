@@ -1,17 +1,18 @@
 open General
 
-val ( + ) : int -> int -> int
 
-val ( - ) : int -> int -> int
+external ( + ) : int -> int -> int = "%addint"
 
-val ( * ) : int -> int -> int
+external ( - ) : int -> int -> int = "%subint"
 
-val ( / ) : int -> int -> int
+external ( * ) : int -> int -> int = "%mulint"
 
-val ( mod ) : int -> int -> int
+external ( / ) : int -> int -> int = "%divint"
+
+external ( mod ) : int -> int -> int = "%modint"
 
 (** Converts the char to an int. *)
-val of_char : char -> int
+external of_char : char -> int = "%identity"
 
 (** Converts the string to an int, returning option type to account for invalid strings. *)
 val of_string : string -> int option

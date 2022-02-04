@@ -1,16 +1,26 @@
 open General
 
-let ( + ) a b = FromStdlib.plus_int a b
 
-let ( - ) a b = FromStdlib.minus_int a b
+external ( + ) : int -> int -> int = "%addint"
 
-let ( * ) a b = FromStdlib.multiply_int a b
+external ( - ) : int -> int -> int = "%subint"
 
-let ( / ) a b = FromStdlib.divide_int a b
+external ( * ) : int -> int -> int = "%mulint"
 
-let ( mod ) a b = FromStdlib.mod_int a b
+external ( / ) : int -> int -> int = "%divint"
 
-let of_char = FromStdlib.int_of_char
+external ( mod ) : int -> int -> int = "%modint"
 
-let of_string = FromStdlib.int_of_string_opt
+external of_char : char -> int = "%identity"
+
+
+external int_of_string : string -> int = "caml_int_of_string"
+
+let of_string s =
+    try
+        Some (int_of_string s)
+    with
+        | Failure _ -> None
+
+
 

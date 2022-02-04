@@ -1,6 +1,14 @@
 open General
 
+
 let empty : 'a list = []
+
+let rec length_helper (list : 'a list) (length : int) =
+    match list with
+    | [] -> length
+    | _ :: xs -> length_helper xs Int.(length + 1)
+
+let length (list : 'a list) = length_helper list 0
 
 let head (ls : 'a list) : 'a option =
     match ls with
@@ -143,3 +151,6 @@ let rec initialize_helper (f : int -> 'a) (length : int) (index : int) (acc : 'a
 
 let initialize (f : int -> 'a) (length : int) : 'a list =
     initialize_helper f length 0 []
+
+let of_array =
+    Stdlib.Array.to_list

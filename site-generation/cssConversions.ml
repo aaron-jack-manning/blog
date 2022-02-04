@@ -1,6 +1,7 @@
 open General
 
-open Css open Nodes
+open Css
+open Nodes
 
 let css_style_to_string (style : css_style) : string =
     String.(style.property + ":" + style.value + ";")

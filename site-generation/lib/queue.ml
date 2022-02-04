@@ -1,5 +1,7 @@
 open General
+
 open List
+
 
 let enqueue (a : 'a) (qu : 'a queue) : 'a queue =
     { qu with front = a :: qu.back }

@@ -1,5 +1,6 @@
 open General
 
+
 (** Adds an element to the back of the queue, returning the new queue. Runs in O(1). *)
 val enqueue : 'a -> 'a queue -> 'a queue
 

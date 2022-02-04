@@ -1,11 +1,22 @@
 open General
 
-let ( + ) a b = FromStdlib.plus_float a b
 
-let ( - ) a b = FromStdlib.minus_float a b
+external ( + ) : float -> float -> float = "%addfloat"
 
-let ( * ) a b = FromStdlib.multiply_float a b
+external ( - ) : float -> float -> float = "%subfloat"
 
-let ( / ) a b = FromStdlib.divide_float a b
+external ( * ) : float -> float -> float = "%mulfloat"
 
-let of_string = FromStdlib.float_of_string_opt
+external ( / ) : float -> float -> float = "%divfloat"
+
+
+external float_of_string : string -> float = "caml_float_of_string"
+
+
+let of_string s =
+    try
+        Some (float_of_string s)
+    with
+        Failure _ -> None
+
+external of_int : int -> float = "%floatofint"
