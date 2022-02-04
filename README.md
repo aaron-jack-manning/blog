@@ -22,7 +22,7 @@ In general, styling is done through bootstrap classes specified in the HTML at t
 
 ## Dependencies and Links
 
-Note that the project in that folder has a dependency on my custom standard library for OCaml which can be found [here](https://github.com/aaron-jack-manning/ocaml-standard-library).
+The site generation code has a dependency on my custom standard library for OCaml which can be found [here](https://github.com/aaron-jack-manning/ocaml-standard-library).
 
 A lot of the images generated for the blog are drawn using a tool I created called [Mathil](https://github.com/aaron-jack-manning/mathil). The source code for the images can be found in the `image-source-code` folder.
 
