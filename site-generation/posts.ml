@@ -1,13 +1,7 @@
 open General
+open Attributes open Css open Nodes open CssConversions open View
 
-open Attributes
-open Css
-open CssConversions
-open Nodes
-open View 
 open BlogPost
-
-(* New posts go here, and are also added to the list at the bottom of this file. *)
 
 let leveraging_self_similarity_in_problem_solving =
     let open String in
@@ -24,10 +18,10 @@ let leveraging_self_similarity_in_problem_solving =
             Paragraph "Certain problems in mathematics allow the leveraging of self similarity be reduced into far simpler problems. In this post I am going to explore one such problem.";
             Paragraph "Solve the equation:";
             Display_maths "\\[x^{x^{x^{x^{\\dots}}}} = 2\\]";
-            Paragraph ("The key trick to solving this problem is noticing that because the exponentiation goes on to infinity, regardless of the chosen starting term, the expression is identical. For example, the expression shown in red below, is the same as the base expression, and is therefore equal to " + inline_maths "\\(2\\)" + ".");
+            Paragraph (String.concat ["The key trick to solving this problem is noticing that because the exponentiation goes on to infinity, regardless of the chosen starting term, the expression is identical. For example, the expression shown in red below, is the same as the base expression, and is therefore equal to "; inline_maths "\\(2\\)"; "."]);
             Display_maths "\\[x^{\\color{red}x^{x^{x^{\\dots}}}} = 2\\]";
             Paragraph "It's important to note that just like in the first example of this section, this fact is only true because the number of terms is infinite.";
-            Paragraph ("We can use this fact to make a substitution of " + inline_maths "\\(2\\)" + " for the top part of the expression.");
+            Paragraph (String.concat ["We can use this fact to make a substitution of "; inline_maths "\\(2\\)"; " for the top part of the expression."]);
             Display_maths "\\begin{align*}x^{2} &= 2 \\\\ x &= \\sqrt{2}\\end{align*}";
             Paragraph "That was a pretty quick way to solve what seemed to be a complicated problem. Let's try using our new superpower of solving problems of this type on another problem:";
             Display_maths "\\[x^{x^{x^{x^{\\dots}}}} = 4\\]";
@@ -75,7 +69,7 @@ let the_beauty_of_diffie_hellman =
             Paragraph "You start by selecting two numbers. I will explain where these numbers will come from later in the post, for now all you need to know is that we're picking one of them to be prime (the only other positive numbers that are factors of it are one and itself) and the other to be smaller than the first. We will call these the modulus and the base respectively.";
             Paragraph ("Let's say you select " + inline_maths "\\(23\\)" + " and " + inline_maths "\\(7\\)" + ". You then yell out to your friend what the numbers are. You and your friend are each now going to think of a random number of your choice, which is preferably not too small. Let's say you think of the number " + inline_maths "\\(7\\)" + ".");
             Paragraph ("You now take the base and raise it to the power of the selected number. This means we are going to multiply seven " + inline_maths "\\(5\\)" + "s together to ultimately get " + inline_maths "\\(78125\\)" + ". Now you just need to take this new number and find the remainder when dividing it by the modulus. In this case " + inline_maths "\\(78125\\)" + " divided by " + inline_maths "\\(23\\)" + " is equal to " + inline_maths "\\(3396\\)" + " with a remainder of " + inline_maths "\\(17\\)" + ". All of this is done privately without telling anyone. While you have been doing this your friend has been doing the exact same thing with their randomly chosen secret number. You can now share what you ended up with.");
-            Paragraph ("You yell out " + inline_maths "\\(17\\)" + " and your friend yells out " + inline_maths "\\(20\\)" + " back to you. Now with the new number as the starting point, you do the exact same thing as you did before but with this new number as your new base. Raise it to the power of your secret number of " + inline_maths "\\(7\\)" + ", and find the remainder when dividing by the modulus of " + inline_maths "\\(23\\)" + ". This gives a result of " + inline_maths "\\(21\\)" + ".");
+            Paragraph (String.concat ["You yell out "; inline_maths "\\(17\\)"; " and your friend yells out "; inline_maths "\\(20\\)"; " back to you. Now with the new number as the starting point, you do the exact same thing as you did before but with this new number as your new base. Raise it to the power of your secret number of "; inline_maths "\\(7\\)"; ", and find the remainder when dividing by the modulus of "; inline_maths "\\(23\\)"; ". This gives a result of "; inline_maths "\\(21\\)"; "."]);
             Paragraph ("Believe it or not, even having chosen a completely different secret number, your friend now has the same secret number at the end, being " + inline_maths "\\(21\\)" + ".");
             Divider;
             Paragraph ("So why does this give the same number? Let's for a moment ignore the step where we took the remainder by division. Under this simpler protocol, all that happened was you took the base, raised it to your secret number then gave it to your friend to raise it to their secret number. From their perspective, they did the same thing. The numbers are the same because " + italics "the order doesn't matter when taking exponents" + ". Raising a number to the power " + inline_maths "\\(3\\)" + " and then raising it to the power of " + inline_maths "\\(2\\)" + " is the same as raising it to the power of " + inline_maths "\\(6\\)" + ".");
@@ -257,18 +251,3 @@ let a_better_approach_to_polynomial_division =
             Paragraph "My ultimate goal in writing this post is to encourage readers to further consider how mathematical methods for computations influence one's understanding of the concept itself, and more importantly to realise that some methods are easy precisely because they're familiar, and that makes it hard to identify where they could be problematic for people learning them for the first time.";
         ];
     }
-
-
-
-let posts = [
-        leveraging_self_similarity_in_problem_solving;
-        the_beauty_of_diffie_hellman;
-        what_does_area_have_to_do_with_gradient;
-        solving_a_hard_problem_by_solving_an_easy_one;
-        an_elegant_solution_to_an_ugly_integral;
-        a_better_approach_to_polynomial_division;
-    ]
-
-let latest = match List.head posts with
-    | Some data -> data
-    | None -> Fatal.failwith "there must be at least one post"

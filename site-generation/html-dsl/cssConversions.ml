@@ -14,9 +14,7 @@ let rec css_styles_to_string (styles : css_style list) : string =
 
 
 (* This always returns a text node. Better design would be to have the style constructor take in a list of css_class only and then convert to Text html_node within that function. *)
-let css_class_text (css_class : css_class) : html_node =
-    Text (
-        String.("." + css_class.name + " {" + css_styles_to_string css_class.styles + "}")
-    )
+let css_class_text (style_group : style_group) : string =
+    String.(style_group.name + " {" + css_styles_to_string style_group.styles + "}")
 
 

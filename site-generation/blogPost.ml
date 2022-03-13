@@ -1,11 +1,5 @@
 open General
-
-open Nodes
-open Css
-open CssConversions
-open View
-open Attributes
-
+open Attributes open Css open Nodes open CssConversions open View
 
 type month = January | February | March | April | May | June | July | August | September | October | November | December
 
@@ -87,7 +81,7 @@ let blog_post_content_element_to_html_node (home_page : bool) = function
             ]
         ]
     | IFrame link ->
-        iframe [src link; width "100%"] []
+        iframe [src link; Attributes.width "100%"] []
     | Image name ->
         if home_page then
             img [src String.("images/" + name)]
@@ -199,15 +193,21 @@ let standard_footer =
         ];
     ]
 
-let home_page (latest_post : blog_post) (first_featured_post : blog_post) (second_featured_post : blog_post) =
+type featured_post =
+    {
+        post : blog_post;
+        description : string;
+    }
+
+let home_page (latest_post : blog_post) (first_featured_post : featured_post) (second_featured_post : featured_post) =
     html [lang "en"] [
         standard_head "Stars and Bars" "";
         body [] [
             standard_title_and_nav "#" "all-posts" "rss/index.xml";
             main [class_ "container"] [
                 div [class_ "row"] [
-                    blog_post_to_card first_featured_post "New Here? Try This";
-                    blog_post_to_card second_featured_post "Not interested in Mathematics?"
+                    blog_post_to_card first_featured_post.post first_featured_post.description;
+                    blog_post_to_card second_featured_post.post second_featured_post.description;
                 ];
                 div [class_ "row g-5"] [
                     div [class_ "col-md-12"] [

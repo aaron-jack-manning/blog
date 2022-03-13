@@ -1,90 +1,17 @@
-/* Sans Serif Computer Modern Font */
-
-@font-face {
-    font-family: "Computer Modern";
-    src: url(computer-modern-sans/cmunss.ttf);
-    font-style: normal;
-    font-weight: 100;
-}
-
-h1, h2, h3, h4, h5, h6, body, a {
-    font-family: "Computer Modern", sans-serif;
-}
-
-/* Blog Header */
-
-nav {
-    border-bottom: 1px solid #e5e5e5;
-}
-
-header {
-    line-height: 1;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-header a {
-    font-size: 2.25rem;
-}
-
-header a:hover {
-    text-decoration: none;
-}
-
-/* Blog post */
-
-article {
-    margin-bottom: 4rem;
-    margin-top: 3rem;
-}
-
-article h2 {
-    margin-bottom: .25rem;
-    font-size: 2.5rem;
-}
-
-article h2 a:hover {
-    text-decoration: none;
-    color: black;
-    color: grey;
-}
-
-article h2 a {
-    text-decoration: none;
-    color: black;
-}
-
-article time {
-    display: inline-block;
-    margin-bottom: 1.25rem;
-    color: #727272;
-}
-
-article blockquote {
-    text-align: center;
-    font-style: italic;
-}
-
-article pre code {
-    background-color: #eee;
-    border-radius: 0.5em;
-    display: block;
-    padding: 2em;
-}
-
-article iframe {
-    height: 30vh;
-}
-
-article img {
-    width: 100%;
-}
-
-/* Footer */
-
-footer {
-    padding: 2.5rem 0;
-    color: #727272;
-    text-align: center;
-    background-color: #f9f9f9;
-    border-top: .05rem solid #e5e5e5;
-}
+@font-face  {font-family:"Computer Modern"; src:url(computer-modern-sans/cmunss.ttf); font-style:normal; font-weight:100;}
+h1, h2, h3, h4, h5, h6, body, a  {font-family:"Computer Modern", sans-serif;}
+nav  {border-bottom:1px solid #e5e5e5;}
+header  {line-height:1; border-bottom:1px solid #e5e5e5;}
+header a  {font-size:2.25rem;}
+header a:hover  {text-decoration:none;}
+article  {margin-bottom:4rem; margin-top:3rem;}
+article h2  {margin-bottom:.25rem; font-size:2.5rem;}
+article h2 a:hover  {text-decoration:none; color:black; color:grey;}
+article h2 a  {text-decoration:none; color:black;}
+article time  {display:inline-block; margin-bottom:1.25rem; color:#727272;}
+article blockquote  {text-align:center; font-style:italic;}
+article pre code  {background-color:#eee; border-radius:0.5em; display:block; padding:2em;}
+article iframe  {height:30vh;}
+article img  {width:100%;}
+article p  {font-size:14pt;}
+footer  {padding:2.5rem 0; color:#727272; text-align:center; background-color:#f9f9f9; border-top:.05rem solid #e5e5e5;}

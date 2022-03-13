@@ -1,18 +1,19 @@
 CUSTOM_LIBRARY_LOCATION = lib
-COMPILE = ocamlopt -O3 -nopervasives -I $(CUSTOM_LIBRARY_LOCATION) -c
+DSL_LOCATION = html-dsl
+COMPILE = ocamlopt -O3 -nopervasives -I $(CUSTOM_LIBRARY_LOCATION) -I $(DSL_LOCATION) -c
+
+site:
+	make install
+	make run
 
 build:
-	$(COMPILE) attributes.ml
-	$(COMPILE) css.ml
-	$(COMPILE) nodes.ml
-	$(COMPILE) cssConversions.ml
-	$(COMPILE) view.ml
+	$(COMPILE) stylesheet.ml
 	$(COMPILE) blogPost.ml
-	$(COMPILE) postContent.ml
+	$(COMPILE) posts.ml
 	$(COMPILE) rss.ml
 	$(COMPILE) main.ml
 
-	ocamlopt -I $(CUSTOM_LIBRARY_LOCATION) $(CUSTOM_LIBRARY_LOCATION)/library.cmxa attributes.cmx css.cmx nodes.cmx cssConversions.cmx view.cmx blogPost.cmx postContent.cmx rss.cmx main.cmx -o program
+	ocamlopt -I $(DSL_LOCATION) -I $(CUSTOM_LIBRARY_LOCATION) $(CUSTOM_LIBRARY_LOCATION)/library.cmxa $(DSL_LOCATION)/library.cmxa stylesheet.cmx blogPost.cmx posts.cmx rss.cmx main.cmx -o program
 
 mostlyclean:
 	rm -f *.o *.a *.s *.cmi *.cmx *.cmxa *.cmo *.cma

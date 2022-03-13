@@ -1,7 +1,6 @@
 open General
 
-open BlogPost
-open PostContent
+open BlogPost open Posts
 
 let generate_rss_for_post (post : blog_post) : string =
     let open String in

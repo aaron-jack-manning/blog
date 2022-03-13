@@ -1,8 +1,5 @@
 open General
-
 open Attributes
-
-
 
 type css_style =
     {
@@ -10,24 +7,29 @@ type css_style =
         value : string;
     }
 
-type css_class =
+type style_group =
     {
         name : string;
         styles : css_style list;
     }
 
-let create_css_class (name : string) (styles : css_style list) : css_class =
+let create_style_group (identifiers : string list) (styles : css_style list) : style_group =
     {
-        name = name;
+        name = List.foldl (fun s m -> String.(s + m + " ")) "" identifiers;
         styles = styles;
     }
 
+let custom_tag (property : string) (value : string) : css_style =
+    {
+        property : string;
+        value : string;
+    }
 
 (* Property constructors. *)
 let align_content (value : string) =
     {
         property = "align-content";
-         value = value;
+        value = value;
     }
 
 let align_items (value : string) =
