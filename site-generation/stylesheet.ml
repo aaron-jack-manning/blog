@@ -67,7 +67,7 @@ let css = [
             width "100%";
         ];
         create_style_group ["article"; "p"] [
-            font_size "14pt"
+            font_size "14pt";
         ];
         (* Footer *)
         create_style_group ["footer"] [

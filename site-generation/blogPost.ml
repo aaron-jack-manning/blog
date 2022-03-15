@@ -83,10 +83,7 @@ let blog_post_content_element_to_html_node (home_page : bool) = function
     | IFrame link ->
         iframe [src link; Attributes.width "100%"] []
     | Image name ->
-        if home_page then
-            img [src String.("images/" + name)]
-        else
-            img [src String.("../../images/" + name)]
+        img [src String.("https://stars-and-bars.net/images/" + name)]
     | Divider ->
         hr []
 
@@ -138,10 +135,10 @@ let standard_head (page_title : string) (path_to_root : string) =
             Nodes.title [] [
                 text page_title
             ];
-            link [rel "stylesheet"; href "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"];
+            link [rel "stylesheet"; href String.(path_to_root + "bootstrap/bootstrap.min.css")];
             link [rel "stylesheet"; href String.(path_to_root + "stylesheet.css")];
             link [rel "icon"; type_ "image/png"; href String.(path_to_root + "images/favicon.png")];
-            script [type_ "text/javascript"; src "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"] [];
+            script [type_ "text/javascript"; src String.(path_to_root + "mathjax/es5/tex-chtml-full.js")] [];
         ]
 
 let standard_title_and_nav (path_to_featured : string) (path_to_all_posts : string) (path_to_rss : string) =
