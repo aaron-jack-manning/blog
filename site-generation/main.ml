@@ -7,6 +7,7 @@ open Rss
 
 (* Posts are ordered most recent first. *)
 let posts = [
+        exploring_complex_functions_through_animation;
         leveraging_self_similarity_in_problem_solving;
         the_beauty_of_diffie_hellman;
         what_does_area_have_to_do_with_gradient;

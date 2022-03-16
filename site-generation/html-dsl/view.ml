@@ -40,3 +40,6 @@ let bold (content : string) : string =
 
 let italics (content : string) : string =
     view (i [] [text content])
+
+let hyperlink (content : string) (url : string) : string =
+    view (a [href url] [text content])
