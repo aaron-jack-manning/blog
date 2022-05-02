@@ -3,12 +3,12 @@ open Attributes open Css open Nodes open CssConversions open View
 
 open BlogPost open Posts
 
-let generate_rss_for_post (post : blog_post) : string =
+let generate_rss_for_post (post : blog_post) (base_url : string) : string =
     let open String in
     concat [
         "<item><title>";
         post.title;
-        "</title><link>https://stars-and-bars.net/posts/";
+        "</title><link>"; base_url ;"posts/";
         post.api_name;
         "</link><description>";
         post.preview;
@@ -19,16 +19,16 @@ let generate_rss_for_post (post : blog_post) : string =
         " ";
         of_int post.date.year;
         "</pubDate><content:encoded><![CDATA[";
-        view (blog_post_to_html_node post false);
+        view (blog_post_to_html_node post false base_url);
         "]]></content:encoded></item>"
     ]
 
-let generate_rss (posts : blog_post list) : string =
+let generate_rss (posts : blog_post list) (title : string) (base_url : string) : string =
     let open String in
     concat [
-        "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><rss xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" version=\"2.0\"><channel><title>Stars and Bars</title><link>https://stars-and-bars.net/</link><description>A blog about mathematics and computing.</description>";
+        "<?xml version=\"1.0\" encoding=\"UTF-8\" ?><rss xmlns:content=\"http://purl.org/rss/1.0/modules/content/\" version=\"2.0\"><channel><title>"; title; "</title><link>"; base_url; "</link><description>A blog about mathematics and computing.</description>";
         posts
-        |> List.map (fun x -> generate_rss_for_post x)
+        |> List.map (fun x -> generate_rss_for_post x base_url)
         |> List.foldl (fun s m -> s + m) "";
         "</channel></rss>"
     ]

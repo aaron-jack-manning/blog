@@ -5,6 +5,9 @@ open BlogPost
 open Posts
 open Rss
 
+let base_url = "starsandbars.aaronmanning.net/"
+let title = "Stars and Bars"
+
 (* Posts are ordered most recent first. *)
 let posts = [
         exploring_complex_functions_through_animation;
@@ -34,22 +37,24 @@ let _ =
                     post = the_beauty_of_diffie_hellman;
                     description = "Not interested in Mathematics?"
                 }
+                title
+                base_url
             )
         )
 
 let _ =
     File.write_all_text
         "website/all-posts/index.html"
-        (view_page (all_posts_page posts))
+        (view_page (all_posts_page posts title))
 
 let _ =
     File.write_all_text
         "website/rss/index.xml"
-        (generate_rss posts)
+        (generate_rss posts title base_url)
 
 let _ =
     posts
-    |> List.map (fun x -> (x.api_name, view_page (post_page x)) )
+    |> List.map (fun x -> (x.api_name, view_page (post_page x base_url title)) )
     |> List.map (fun (api_name, content) -> File.write_all_text String.("website/posts/" + api_name + "/index.html") content)
 
 let _ =

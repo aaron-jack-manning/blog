@@ -45,7 +45,7 @@ type blog_post =
         content : blog_post_content;
     }
 
-let blog_post_content_element_to_html_node (home_page : bool) = function
+let blog_post_content_element_to_html_node (home_page : bool) (base_url : string) = function
     | Subtitle subtitle ->
         h3 [] [
             text subtitle
@@ -83,16 +83,16 @@ let blog_post_content_element_to_html_node (home_page : bool) = function
     | IFrame link ->
         iframe [src link; Attributes.width "100%"] []
     | Image name ->
-        img [src String.("https://stars-and-bars.net/images/" + name)]
+        img [src String.(base_url + "/images/" + name)]
     | Divider ->
         hr []
 
-let blog_post_content_to_html_nodes (home_page : bool) = List.map (fun x -> blog_post_content_element_to_html_node home_page x)
+let blog_post_content_to_html_nodes (home_page : bool) (base_url : string) = List.map (fun x -> blog_post_content_element_to_html_node home_page base_url x)
 
 let date_to_string (date : date) =
     String.(month_to_string date.month + " " + of_int date.date + ", " + of_int date.year)
 
-let blog_post_to_html_node (post : blog_post) (home_page : bool) =
+let blog_post_to_html_node (post : blog_post) (home_page : bool) (base_url : string) =
     article [] (List.(@) [
         h2 [] [
             text post.title
@@ -100,7 +100,7 @@ let blog_post_to_html_node (post : blog_post) (home_page : bool) =
         time [] [
             text (date_to_string post.date)
         ];
-    ] (blog_post_content_to_html_nodes home_page post.content))
+    ] (blog_post_content_to_html_nodes home_page base_url post.content))
 
 let blog_post_to_card (post : blog_post) (post_type : string) =
     div [class_ "col-md-6"] [
@@ -141,13 +141,13 @@ let standard_head (page_title : string) (path_to_root : string) =
             script [type_ "text/javascript"; src String.(path_to_root + "mathjax/es5/tex-chtml-full.js")] [];
         ]
 
-let standard_title_and_nav (path_to_featured : string) (path_to_all_posts : string) (path_to_rss : string) =
+let standard_title_and_nav (path_to_featured : string) (path_to_all_posts : string) (path_to_rss : string) (title : string) =
     div [class_ "container"] [
         header [class_ "py-3 pt-5"] [
             div [class_ "row flex-nowrap justify-content-between align-items-center"] [
                 div [class_ "col-12 text-center"] [
                     a [class_ "text-dark"; href "#"] [
-                        text "Stars and Bars"
+                        text title 
                     ]
                 ]
             ]
@@ -196,11 +196,11 @@ type featured_post =
         description : string;
     }
 
-let home_page (latest_post : blog_post) (first_featured_post : featured_post) (second_featured_post : featured_post) =
+let home_page (latest_post : blog_post) (first_featured_post : featured_post) (second_featured_post : featured_post) (title : string) (base_url : string) =
     html [lang "en"] [
-        standard_head "Stars and Bars" "";
+        standard_head title "";
         body [] [
-            standard_title_and_nav "#" "all-posts" "rss/index.xml";
+            standard_title_and_nav "#" "all-posts" "rss/index.xml" title;
             main [class_ "container"] [
                 div [class_ "row"] [
                     blog_post_to_card first_featured_post.post first_featured_post.description;
@@ -211,7 +211,7 @@ let home_page (latest_post : blog_post) (first_featured_post : featured_post) (s
                         h3 [class_ "pb-4 pt-4 mb-4 border-bottom border-top"] [
                             text "Latest Post"
                         ];
-                        blog_post_to_html_node latest_post true;
+                        blog_post_to_html_node latest_post true base_url;
                     ]
                 ];
             ];
@@ -219,15 +219,15 @@ let home_page (latest_post : blog_post) (first_featured_post : featured_post) (s
         ];
     ]
 
-let post_page (post : blog_post) =
+let post_page (post : blog_post) (base_url : string) (title : string) =
     html [lang "en"] [
         standard_head post.title "../../";
         body [] [
-            standard_title_and_nav "../../" "../../all-posts" "../../rss/index.xml";
+            standard_title_and_nav "../../" "../../all-posts" "../../rss/index.xml" title;
             main [class_ "container"] [
                 div [class_ "row g-5"] [
                     div [class_ "col-md-12"] [
-                        blog_post_to_html_node post false;
+                        blog_post_to_html_node post false base_url;
                     ]
                 ]
             ];
@@ -252,11 +252,11 @@ let blog_post_preview (post : blog_post) : html_node =
     ]
 
 
-let all_posts_page (posts : blog_post list) =
+let all_posts_page (posts : blog_post list) (title : string) =
     html [lang "en"] [
         standard_head "All Posts" "../";
         body [] [
-            standard_title_and_nav "../" "#" "../rss/index.xml";
+            standard_title_and_nav "../" "#" "../rss/index.xml" title;
             main [class_ "container"] [
                 div [class_ "row g-5"] [
                     div [class_ "col-md-12"] (
