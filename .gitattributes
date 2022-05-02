@@ -1,2 +1,3 @@
-site-generation/**.ml linguist-language=OCaml
-site-generation/**/**.ml linguist-language=OCaml
+site-generation/lib/** linguist-vendored
+site-generation/html-dsl/** inguist-vendored
+site-generation/*.ml linguist-language=OCaml
