@@ -1,3 +1,5 @@
 site-generation/lib/** linguist-vendored
 site-generation/html-dsl/** linguist-vendored
 site-generation/*.ml linguist-language=OCaml
+site-generation/website/bootstrap/** linguist-vendored
+site-generation/website/mathjax/** linguist-vendored
