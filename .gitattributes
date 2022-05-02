@@ -1,1 +1,1 @@
-site-generation/**.ml linguist-language=Standard ML
+site-generation/**.ml linguist-language=OCaml
