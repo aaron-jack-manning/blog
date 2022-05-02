@@ -83,7 +83,7 @@ let blog_post_content_element_to_html_node (home_page : bool) (base_url : string
     | IFrame link ->
         iframe [src link; Attributes.width "100%"] []
     | Image name ->
-        img [src String.(base_url + "/images/" + name)]
+        img [src String.(base_url + "images/" + name)]
     | Divider ->
         hr []
 
