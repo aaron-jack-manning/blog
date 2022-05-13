@@ -1,6 +1,6 @@
-# Stars and Bars Blog
+Blog
 
-This repository contains the HTML and CSS source for [my blog](https://starsandbars.aaronmanning.net).
+This repository contains the HTML and CSS source for [my blog](https://blog.aaronmanning.net).
 
 ## Site Content
 

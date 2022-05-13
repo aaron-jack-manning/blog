@@ -5,8 +5,8 @@ open BlogPost
 open Posts
 open Rss
 
-let base_url = "starsandbars.aaronmanning.net/"
-let title = "Stars and Bars"
+let base_url = "https://blog.aaronmanning.net/"
+let title = "Aaron's Blog"
 
 (* Posts are ordered most recent first. *)
 let posts = [
@@ -31,11 +31,11 @@ let _ =
                 latest
                 {
                     post = what_does_area_have_to_do_with_gradient;
-                    description = "New Here? Try This"
+                    description = ""
                 }
                 {
                     post = the_beauty_of_diffie_hellman;
-                    description = "Not interested in Mathematics?"
+                    description = ""
                 }
                 title
                 base_url
