@@ -25,8 +25,8 @@ pub struct Post {
     pub path : path::PathBuf,
 }
 
-static NORMAL_POST_IMAGE_PATH : &str = "../../../images/";
-static TOP_LEVEL_IMAGE_PATH : &str = "../images/";
+static NORMAL_POST_IMAGE_PATH : &str = "../../images/";
+static TOP_LEVEL_IMAGE_PATH : &str = "images/";
 
 impl fmt::Debug for Post {
     fn fmt(&self, f : &mut fmt::Formatter<'_>) -> fmt::Result {
