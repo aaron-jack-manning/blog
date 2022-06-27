@@ -1,4 +1,4 @@
-Blog
+# Blog
 
 This repository contains the HTML and CSS source for [my blog](https://blog.aaronmanning.net).
 
