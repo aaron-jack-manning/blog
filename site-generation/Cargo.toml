@@ -4,8 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+dsl = { git = "https://github.com/aaron-jack-manning/rust-html-dsl" }
 comrak = "0.13.0"
-dsl = { path = "dsl" }
 serde = { version = "1.0.81", features = ["derive"] }
 serde_json = "1.0.81"
 

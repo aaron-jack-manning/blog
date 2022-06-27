@@ -223,6 +223,7 @@ fn main() {
         .unwrap()
         .map(|entry| entry.unwrap().path())
         .filter(|path| path.extension() == Some(&ffi::OsString::from("md")))
+        .filter(|path| !path.file_name().unwrap().to_str().unwrap().starts_with("_"))
         .collect();
 
     // Parse markdown to generate posts with HTML.
