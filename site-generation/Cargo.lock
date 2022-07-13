@@ -185,6 +185,7 @@ dependencies = [
 [[package]]
 name = "dsl"
 version = "0.1.0"
+source = "git+https://github.com/aaron-jack-manning/rust-html-dsl#e42c2cfe9c7fab216096692594531117e397a3e0"
 dependencies = [
  "proc_macros",
 ]
@@ -428,6 +429,7 @@ dependencies = [
 [[package]]
 name = "proc_macros"
 version = "0.1.0"
+source = "git+https://github.com/aaron-jack-manning/rust-html-dsl#e42c2cfe9c7fab216096692594531117e397a3e0"
 dependencies = [
  "proc-macro2",
  "quote",

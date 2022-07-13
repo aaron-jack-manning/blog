@@ -126,10 +126,17 @@ pub fn get_post_info<'a, T>(md_node : &'a AstNode<'a>, html_node : &mut T, front
             },
             NodeValue::CodeBlock(val) => {
                 html_node.child(
-                    pre!([
-                        code!([][background_color("#eee"), border_radius("0.5em"), display("block"), padding("2em")][
+                    pre!([][background_color("#eee"), border_radius("0.5em"), display("block"), padding("1em")][
+                        code!([][][
                             text![str::from_utf8(&val.literal).unwrap()]
                         ])
+                    ])
+                );
+            },
+            NodeValue::Code(val) => {
+                html_node.child(
+                    code!([][background_color("#eee"), color("black")][
+                        text![str::from_utf8(&val.literal).unwrap()]
                     ])
                 );
             },
@@ -193,13 +200,6 @@ pub fn get_post_info<'a, T>(md_node : &'a AstNode<'a>, html_node : &mut T, front
 
                 html_node.child(text![str::from_utf8(val).unwrap()]);
             },
-            NodeValue::Code(val) => {
-                html_node.child(
-                    code!([][background_color("#eee"), color("black")][
-                        text![str::from_utf8(&val.literal).unwrap()]
-                    ])
-                );
-            },
             NodeValue::HtmlInline(val) => {
                 let html_inline = str::from_utf8(&val).unwrap().replace("\n", "");
                 html_node.child(text![&html_inline]);
@@ -230,6 +230,26 @@ pub fn get_post_info<'a, T>(md_node : &'a AstNode<'a>, html_node : &mut T, front
                          css::width("100%")
                     ])
                 );
+            },
+            NodeValue::List(val) => {
+                use comrak::nodes::ListType::*;
+                match val.list_type {
+                    Bullet => {
+                        let mut list = Ul::new();
+                        get_post_info(&child, &mut list, front_matter, name, top_level);
+                        html_node.child(list);
+                    },
+                    Ordered => {
+                        let mut list = Ol::new();
+                        get_post_info(&child, &mut list, front_matter, name, top_level);
+                        html_node.child(list);
+                    },
+                }
+            },
+            NodeValue::Item(_) => {
+                let mut item = Li::new();
+                get_post_info(&child, &mut item, front_matter, name, top_level);
+                html_node.child(item);
             },
             // Explicitly ignored elements.
             NodeValue::SoftBreak => (),
